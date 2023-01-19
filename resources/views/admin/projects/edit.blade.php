@@ -39,7 +39,7 @@
                     {{ $technology->name }}
                 </option>
                 @else
-                <option value="{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                <option value="{{ $technology->id }}" {{ $project->technology->contains($technology->id) ? 'selected' : '' }}>
                     {{ $technology->name }}
                 </option>
                 @endif

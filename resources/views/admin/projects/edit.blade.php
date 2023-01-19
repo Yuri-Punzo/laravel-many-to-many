@@ -28,6 +28,27 @@
 
             </select>
         </div>
+        <div class="mb-3">
+            <label for="technologies" class="form-label">City</label>
+            <select multiple class="form-select form-select-lg" name="technologies[]" id="technologies">
+                <option value="" disabled>Select one</option>
+
+                @forelse ($technologies as $technology)
+                @if ($errors->any())
+                <option value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                    {{ $technology->name }}
+                </option>
+                @else
+                <option value="{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                    {{ $technology->name }}
+                </option>
+                @endif
+                @empty
+                <h6>Sorry.No technologies inside the database yet.</h6>
+                @endforelse
+            </select>
+
+        </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
 

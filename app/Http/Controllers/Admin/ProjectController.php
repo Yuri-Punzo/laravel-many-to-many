@@ -50,7 +50,7 @@ class ProjectController extends Controller
 
         $project = Project::create($val_data);
         if ($request->has('technologies')) {
-            $project->technology()->attach($val_data['technologies']);
+            $project->technologies()->attach($val_data['technologies']);
         }
 
         //dd($project);
@@ -98,9 +98,9 @@ class ProjectController extends Controller
 
         $project->update($val_data);
         if ($request->has('technologies')) {
-            $project->technology()->sync($val_data['technologies']);
+            $project->technologies()->sync($val_data['technologies']);
         } else {
-            $project->technology()->sync([]);
+            $project->technologies()->sync([]);
         }
 
         return to_route('admin.projects.index')->with('message', "$project->title update successfully");

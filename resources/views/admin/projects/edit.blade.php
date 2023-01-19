@@ -18,18 +18,18 @@
             <textarea class="form-control" name="description" id="description" rows="4">{{old('description', $project->description)}}</textarea>
         </div>
         <div class="mb-3">
-            <label class="h4" for="type_id" class="form-label">types</label>
+            <label class="form-label" for="type_id" class="form-label">Types</label>
             <select class="form-select form-select-lg @error('type_id') 'is-invalid' @enderror" name="type_id" id="type_id">
                 <option selected>Select one</option>
 
                 @foreach ($types as $type)
-                <option value="{{$type->id}}">{{$type->name}}</option>
+                <option value="{{$type->id}}" {{ $project->type->id == $type->id ? 'selected' : '' }}>{{$type->name}}</option>
                 @endforeach
 
             </select>
         </div>
         <div class="mb-3">
-            <label for="technologies" class="form-label">City</label>
+            <label for="technologies" class="form-label">Technologies</label>
             <select multiple class="form-select form-select-lg" name="technologies[]" id="technologies">
                 <option value="" disabled>Select one</option>
 
@@ -39,7 +39,7 @@
                     {{ $technology->name }}
                 </option>
                 @else
-                <option value="{{ $technology->id }}" {{ $project->technology->contains($technology->id) ? 'selected' : '' }}>
+                <option value="{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
                     {{ $technology->name }}
                 </option>
                 @endif
